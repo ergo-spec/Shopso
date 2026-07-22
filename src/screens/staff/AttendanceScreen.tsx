@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
+  Image,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
@@ -9,12 +10,9 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { useAuthStore } from '../../store/useAuthStore';
 
 export const AttendanceScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
-  const user = useAuthStore((state) => state.user);
-  const activeShop = useAuthStore((state) => state.activeShop);
 
   const [isCheckedIn, setIsCheckedIn] = useState(true);
   const checkInTime = '09:15 AM';
@@ -35,11 +33,15 @@ export const AttendanceScreen: React.FC = () => {
       <StatusBar barStyle="dark-content" translucent backgroundColor="transparent" />
 
       {/* Header Bar */}
-      <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
+      <View style={[styles.header, { paddingTop: insets.top + 6 }]}>
         <View style={styles.headerTop}>
-          <View>
-            <Text style={styles.shopName}>{activeShop?.name || 'Main Branch'}</Text>
-            <Text style={styles.staffName}>Attendance • {user?.email || 'Staff'}</Text>
+          <View style={styles.appBranding}>
+            <Image
+              source={require('../../../assets/app-icon.png')}
+              style={styles.appLogo}
+              resizeMode="contain"
+            />
+            <Text style={styles.headerPageTitle}>Attendance</Text>
           </View>
 
           <View style={styles.locationBadge}>
@@ -155,7 +157,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#ffffff',
     paddingHorizontal: 20,
-    paddingBottom: 16,
+    paddingBottom: 8,
     borderBottomWidth: 1,
     borderBottomColor: '#f1f5f9',
   },
@@ -164,15 +166,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  shopName: {
-    fontSize: 20,
+  appBranding: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  appLogo: {
+    width: 36,
+    height: 36,
+    borderRadius: 8,
+  },
+  headerPageTitle: {
+    fontSize: 18,
     fontWeight: '700',
     color: '#0f172a',
-  },
-  staffName: {
-    fontSize: 12,
-    color: '#64748b',
-    marginTop: 2,
   },
   locationBadge: {
     flexDirection: 'row',
