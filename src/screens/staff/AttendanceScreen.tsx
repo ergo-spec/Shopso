@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     padding: 16,
-    paddingBottom: 100, // Space for floating pill tab bar
+    paddingBottom: 84, // Space for floating pill tab bar
     gap: 16,
   },
   statusCard: {

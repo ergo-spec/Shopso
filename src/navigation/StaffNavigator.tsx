@@ -34,18 +34,16 @@ const CustomPillTabBar: React.FC<BottomTabBarProps & { onOpenEntryModal: () => v
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.pillTabBarContainer, { bottom: insets.bottom + 8 }]}>
-      {/* Elevated Off-Axis Center Plus Button */}
-      <View style={styles.curvedCollarWrapper} pointerEvents="box-none">
-        <View style={styles.whiteCollarRing}>
-          <TouchableOpacity
-            style={styles.offAxisPlusButton}
-            onPress={onOpenEntryModal}
-            activeOpacity={0.85}
-          >
-            <Ionicons name="add" size={28} color="#ffffff" />
-          </TouchableOpacity>
-        </View>
+    <View style={[styles.pillTabBarContainer, { bottom: Math.max(insets.bottom, 12) }]}>
+      {/* Aligned Center Plus Button with matching navbar border line */}
+      <View style={styles.centerPlusWrapper} pointerEvents="box-none">
+        <TouchableOpacity
+          style={styles.alignedPlusButton}
+          onPress={onOpenEntryModal}
+          activeOpacity={0.85}
+        >
+          <Ionicons name="add" size={26} color="#ffffff" />
+        </TouchableOpacity>
       </View>
 
       {/* Tab Items Row: Entry -> Attendance -> (+) -> History -> Account */}
@@ -342,32 +340,30 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
 
-  /* Curved White Collar Ring framing the elevated off-axis button */
-  curvedCollarWrapper: {
+  /* Center Aligned Plus Button */
+  centerPlusWrapper: {
     position: 'absolute',
-    top: -18,
-    alignSelf: 'center',
-    zIndex: 10,
-  },
-  whiteCollarRing: {
-    width: 58,
-    height: 58,
-    borderRadius: 29,
-    backgroundColor: '#ffffff',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 10,
   },
-  offAxisPlusButton: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+  alignedPlusButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     backgroundColor: '#e70b24',
+    borderWidth: 1.5,
+    borderColor: '#e2e8f0', // Same border line as navbar pill
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#e70b24',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.35,
-    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
     elevation: 5,
   },
 

@@ -361,7 +361,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     padding: 16,
-    paddingBottom: 100, // Safe padding above floating pill tab bar
+    paddingBottom: 84, // Safe padding above floating pill tab bar
     gap: 16,
     backgroundColor: '#ffffff',
   },
