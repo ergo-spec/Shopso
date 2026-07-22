@@ -10,11 +10,9 @@ import {
   StatusBar,
   Image,
   ScrollView,
-  useWindowDimensions,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LoginHeaderBackground } from '../../components/auth/LoginHeaderBackground';
-import { colors } from '../../theme';
 import { Ionicons } from '@expo/vector-icons';
 import { authApi } from '../../api/authApi';
 import { useAuthStore } from '../../store/useAuthStore';
